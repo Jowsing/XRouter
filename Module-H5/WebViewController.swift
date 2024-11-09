@@ -8,7 +8,8 @@
 
 import UIKit
 import WebKit
-import XRouter
+import X_Router
+import Base
 
 class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate, RoutableWebController {
     
@@ -48,6 +49,18 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate, R
             self?.progressBar.progress = progress
             self?.progressBar.isHidden = progress == 1
         }))
+    }
+    
+    private func getHTMLData(_ urlStr: String) {
+        guard let HTTPService = Router.getServiceType(with: "HTTPService") as? NetworkService.Type else { return }
+        HTTPService.request(.init(url: .init(string: urlStr)!)) { result in
+            switch result {
+            case .success(let data):
+                print("data ->", String(data: data, encoding: .utf8) ?? "")
+            case .failure(let error):
+                print("error ->", error)
+            }
+        }
     }
     
     // MARK: - WKNavigationDelegate
@@ -90,6 +103,7 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate, R
     func update(parameters: Router.Parameters) {
         guard let url = parameters["url"] as? URL else { return }
         self.webView.load(.init(url: url))
+        self.getHTMLData(url.absoluteString)
     }
     
     func merge(parameters: Router.Parameters) {

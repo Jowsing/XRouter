@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import XRouter
+import X_Router
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

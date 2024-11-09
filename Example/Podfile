@@ -4,5 +4,7 @@ platform :ios, '10.0'
 
 target 'XRouter_Example' do
   pod 'X-Router', :path => '../'
-
+  pod 'Base', :path => '../'
+  pod 'Module-Mine', :path => '../'
+  pod 'Module-H5', :path => '../'
 end

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import XRouter
+import X_Router
 
 class DemoViewController: UIViewController {
     
@@ -50,18 +50,6 @@ class DemoViewController: UIViewController {
         btn1.addTarget(self, action: #selector(openLink), for: .touchUpInside)
     }
     
-    private func getHTMLData(_ urlStr: String) {
-        guard let serviceType = Router.getServiceType(with: "NetworkService") as? NetworkService.Type else { return }
-        serviceType.request(.init(url: .init(string: urlStr)!)) { result in
-            switch result {
-            case .success(let data):
-                print("data ->", String(data: data, encoding: .utf8) ?? "")
-            case .failure(let error):
-                print("error ->", error)
-            }
-        }
-    }
-    
     @objc func textDidChange(sender: UITextField) {
         
     }
@@ -92,7 +80,6 @@ class DemoViewController: UIViewController {
         textField?.resignFirstResponder()
         guard let url = self.textField?.text else { return }
         Router.open(url: url, parameters: ["routingBrowser": self.routingBrowser])
-//        self.getHTMLData(url)
     }
 
     override func didReceiveMemoryWarning() {

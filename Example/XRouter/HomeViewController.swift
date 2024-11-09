@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import XRouter
+import X_Router
 
 class HomeViewController: UIViewController {
 
@@ -18,7 +18,7 @@ class HomeViewController: UIViewController {
         
         self.view.backgroundColor = .white
         
-        let btn1 = UIButton(frame: CGRect(x: 50, y: view.bounds.height * 0.5 - 50, width: view.bounds.width - 100, height: 30))
+        let btn1 = UIButton(frame: CGRect(x: 50, y: UIApplication.shared.statusBarFrame.height + 188, width: view.bounds.width - 100, height: 30))
         btn1.setTitle("Jump Demo (Path)", for: .normal)
         btn1.setTitleColor(.systemBlue, for: .normal)
         view.addSubview(btn1)
@@ -34,7 +34,7 @@ class HomeViewController: UIViewController {
         btn3.setTitle("Service Demo", for: .normal)
         btn3.setTitleColor(.systemBlue, for: .normal)
         view.addSubview(btn3)
-        btn3.addTarget(self, action: #selector(clickURL), for: .touchUpInside)
+        btn3.addTarget(self, action: #selector(servicePath), for: .touchUpInside)
     }
     
     @objc private func clickPath() {
@@ -46,7 +46,7 @@ class HomeViewController: UIViewController {
     }
     
     @objc private func servicePath() {
-        Router.open(url: "/list")
+        Router.open(url: "/mine")
     }
     
 }

@@ -7,17 +7,7 @@
 //
 
 import Foundation
-import XRouter
-
-protocol NetworkService: RoutableService {
-    @discardableResult
-    static func request(_ request: URLRequest, completion: @escaping (Result<Data, Error>) -> Void) -> URLSessionDataTask
-}
-
-extension NetworkService {
-    
-    static var name: String { return "NetworkService" }
-}
+import Base
 
 class HTTPService: NSObject, NetworkService {
     

@@ -13,7 +13,6 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		824786632CDF31D9004CF4F8 /* TableViewCellService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824786622CDF31D9004CF4F8 /* TableViewCellService.swift */; };
 		826122122CDCAE0A003B2BAE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826122112CDCAE0A003B2BAE /* HomeViewController.swift */; };
-		82AB4B262CDDD40600F7B523 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AB4B252CDDD40600F7B523 /* WebViewController.swift */; };
 		82AB4B282CDE02AC00F7B523 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AB4B272CDE02AC00F7B523 /* NetworkService.swift */; };
 		90DF9D7E39966652D3D22B8B /* Pods_XRouter_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4504D865B113AB99048D8FCF /* Pods_XRouter_Example.framework */; };
 /* End PBXBuildFile section */
@@ -30,8 +29,10 @@
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		824786622CDF31D9004CF4F8 /* TableViewCellService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellService.swift; sourceTree = "<group>"; };
+		824786642CDFAC14004CF4F8 /* Module-H5.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = "Module-H5.podspec"; path = "../Module-H5.podspec"; sourceTree = SOURCE_ROOT; };
+		824786652CDFAC14004CF4F8 /* Module-Mine.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = "Module-Mine.podspec"; path = "../Module-Mine.podspec"; sourceTree = SOURCE_ROOT; };
+		824786662CDFB095004CF4F8 /* Base.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base.podspec; path = ../Base.podspec; sourceTree = SOURCE_ROOT; };
 		826122112CDCAE0A003B2BAE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		82AB4B252CDDD40600F7B523 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		82AB4B272CDE02AC00F7B523 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		86CED72B05A85ED4F78161BC /* Pods-XRouter_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XRouter_Tests.release.xcconfig"; path = "Target Support Files/Pods-XRouter_Tests/Pods-XRouter_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		8D8E21DBAAF2F43CC3137430 /* Pods-XRouter_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XRouter_Tests.debug.xcconfig"; path = "Target Support Files/Pods-XRouter_Tests/Pods-XRouter_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -90,7 +91,6 @@
 				826122112CDCAE0A003B2BAE /* HomeViewController.swift */,
 				82AB4B272CDE02AC00F7B523 /* NetworkService.swift */,
 				824786622CDF31D9004CF4F8 /* TableViewCellService.swift */,
-				82AB4B252CDDD40600F7B523 /* WebViewController.swift */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
@@ -110,6 +110,9 @@
 		607FACF51AFB993E008FA782 /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
+				824786662CDFB095004CF4F8 /* Base.podspec */,
+				824786642CDFAC14004CF4F8 /* Module-H5.podspec */,
+				824786652CDFAC14004CF4F8 /* Module-Mine.podspec */,
 				526CAC52FD852108EF1B8428 /* X-Router.podspec */,
 				DA7F76F39FEF06A8C9703E24 /* README.md */,
 				DB9D9CE6BF885912536017E1 /* LICENSE */,
@@ -226,10 +229,16 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-XRouter_Example/Pods-XRouter_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Base/Base.framework",
+				"${BUILT_PRODUCTS_DIR}/Module-H5/Module_H5.framework",
+				"${BUILT_PRODUCTS_DIR}/Module-Mine/Module_Mine.framework",
 				"${BUILT_PRODUCTS_DIR}/X-Router/X_Router.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Base.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Module_H5.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Module_Mine.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/X_Router.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -248,7 +257,6 @@
 				607FACD81AFB9204008FA782 /* DemoViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				826122122CDCAE0A003B2BAE /* HomeViewController.swift in Sources */,
-				82AB4B262CDDD40600F7B523 /* WebViewController.swift in Sources */,
 				824786632CDF31D9004CF4F8 /* TableViewCellService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -374,6 +382,7 @@
 				DEVELOPMENT_TEAM = 38HBNZ3Q35;
 				ENABLE_DEBUG_DYLIB = NO;
 				INFOPLIST_FILE = XRouter/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "X-Router";
 				IPHONEOS_DEPLOYMENT_TARGET = 10;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -392,6 +401,7 @@
 				DEVELOPMENT_TEAM = 38HBNZ3Q35;
 				ENABLE_DEBUG_DYLIB = NO;
 				INFOPLIST_FILE = XRouter/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "X-Router";
 				IPHONEOS_DEPLOYMENT_TARGET = 10;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
