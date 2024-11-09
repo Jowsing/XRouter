@@ -124,38 +124,36 @@ extension Router {
     // MARK: - Go Back
     
     public static func back(_ url: String, parameters: [String: Any]? = nil) {
-        guard let routingURL = Router.URL.routingURL(url, parameters: parameters) else {
-            self.log("请使用正确的router URL")
+        guard let routingURL = self.getRoutingURL(url, parameters: parameters),
+                let controllerType = self.getRoutingControllerType(routingURL) else { return }
+        guard self.findExistViewController(type: controllerType, from: self.keyWindow?.rootViewController) != nil else {
+            self.log("back失败, \(url)不在当前路径中")
             return
         }
-        if Router.shared.intercept(routingURL.path, parameters: routingURL.parameters) {
-            self.log("back被拦截，url = \(routingURL.url.absoluteString)")
-            return
-        }
-        guard let controllerType = Router.shared.controllerTypes[routingURL.path] else {
-            self.log("无法找到\(routingURL.url.absoluteString)对应的controllerType")
-            return
-        }
-        self.back(type: controllerType, parameters: routingURL.parameters)
+        self.backToNative(type: controllerType, parameters: routingURL.parameters)
     }
     
-    static func back(type: UIViewController.Type, parameters: Parameters) {
+    private static func backToNative(type: UIViewController.Type, parameters: Parameters) {
         guard let currentVC = self.currentViewController(keyWindow?.rootViewController), !currentVC.isKind(of: type) else {
             return
         }
         // 如果当前控制器是被modal出来的，那么先dismiss，再去找要返回的目标
         if currentVC.presentingViewController != nil {
             currentVC.dismiss(animated: false) {
-                self.back(type: type, parameters: parameters)
+                self.backToNative(type: type, parameters: parameters)
             }
             return
         }
-        // 如果在导航之中
-        // 且栈顶不是当前控制器
-        // 先找目标控制器在不在这个导航里
-        guard let navVC = currentVC.navigationController, let topVC = navVC.topViewController, !topVC.isKind(of: type) else { return }
+        // 如果当前控制器在导航之中
+        // 且栈顶不是目标控制器
+        // 看目标控制器在不在这个导航里
+        guard let navVC = currentVC.navigationController,
+              !navVC.isKind(of: type),
+              let topVC = navVC.topViewController,
+                !topVC.isKind(of: type) else { return }
         guard let targetVC = navVC.viewControllers.last(where: { $0.isKind(of: type) }) else {
-            // 在导航中找TabBarController的选中控制器
+            // 不在当前导航中
+            // 则先在导航中找TabBarController的选中控制器
             if let tabBarVC = navVC.viewControllers.last(where: { $0.isKind(of: UITabBarController.self) }) as? UITabBarController, let selectedVC = tabBarVC.selectedViewController, selectedVC.isKind(of: type) {
                 if let paramsVC = selectedVC as? RoutableController {
                     paramsVC.merge(parameters: parameters)
@@ -165,11 +163,12 @@ extension Router {
             // 如果导航控制器也是modal出来的，则继续往上找
             if navVC.presentingViewController != nil {
                 navVC.dismiss(animated: false) {
-                    self.back(type: type, parameters: parameters)
+                    self.backToNative(type: type, parameters: parameters)
                 }
             }
             return
         }
+        // 在导航中则直接pop过去
         if let paramsVC = targetVC as? RoutableController {
             paramsVC.merge(parameters: parameters)
         }
@@ -179,21 +178,22 @@ extension Router {
     // MARK: - UIKit
     
     @available(iOS 13.0, *)
-    static var windowScene: UIWindowScene? {
+    public static var windowScene: UIWindowScene? {
         return UIApplication.shared.connectedScenes.compactMap({ $0 as? UIWindowScene }).filter({$0.activationState == .foregroundActive}).first
     }
     
-    static var keyWindow: UIWindow? {
+    public static var keyWindow: UIWindow? {
         if let delegate = UIApplication.shared.delegate, let window = delegate.window {
             return window
         }
         if #available(iOS 13.0, *) {
             return windowScene?.windows.first(where: \.isKeyWindow)
+        } else {
+            return UIApplication.shared.keyWindow
         }
-        return nil
     }
     
-    static func currentNavigationController() -> UINavigationController? {
+    public static func currentNavigationController() -> UINavigationController? {
         if let root = self.keyWindow?.rootViewController as? UINavigationController {
             return self.lastNavigationController(root)
         }
@@ -208,7 +208,7 @@ extension Router {
         return nil
     }
     
-    static func lastNavigationController(_ from: UINavigationController) -> UINavigationController? {
+    public static func lastNavigationController(_ from: UINavigationController) -> UINavigationController? {
         if let navc = from.presentedViewController as? UINavigationController {
             return self.lastNavigationController(navc)
         }
@@ -218,17 +218,38 @@ extension Router {
         return from
     }
 
-    static func currentViewController(_ from: UIViewController?) -> UIViewController? {
+    public static func currentViewController(_ from: UIViewController?) -> UIViewController? {
         var vc = from
         if let presentedVC = from?.presentedViewController {
             vc = presentedVC
         }
-        if let tabBarVC = vc as? UITabBarController {
-            return self.currentViewController(tabBarVC.selectedViewController)
+        if let tabBarVC = vc as? UITabBarController, let selectedViewController = tabBarVC.selectedViewController {
+            return self.currentViewController(selectedViewController)
         }
-        if let navVC = vc as? UINavigationController {
-            return self.currentViewController(navVC.visibleViewController)
+        if let navVC = vc as? UINavigationController, let visibleViewController = navVC.visibleViewController {
+            return self.currentViewController(visibleViewController)
         }
         return vc
+    }
+    
+    public static func findExistViewController(type: UIViewController.Type, from: UIViewController?) -> UIViewController? {
+        guard let from = from else { return nil }
+        if from.isKind(of: type)  {
+            return from
+        }
+        if let presentedVC = from.presentedViewController {
+            return self.findExistViewController(type: type, from: presentedVC)
+        }
+        if let tabBarVC = from as? UITabBarController {
+            return self.findExistViewController(type: type, from: tabBarVC.selectedViewController)
+        }
+        if let navVC = from as? UINavigationController {
+            for vc in navVC.viewControllers {
+                if let result = self.findExistViewController(type: type, from: vc) {
+                    return result
+                }
+            }
+        }
+        return nil
     }
 }
