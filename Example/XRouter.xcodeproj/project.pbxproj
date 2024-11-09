@@ -32,6 +32,7 @@
 		824786642CDFAC14004CF4F8 /* Module-H5.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = "Module-H5.podspec"; path = "../Module-H5.podspec"; sourceTree = SOURCE_ROOT; };
 		824786652CDFAC14004CF4F8 /* Module-Mine.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = "Module-Mine.podspec"; path = "../Module-Mine.podspec"; sourceTree = SOURCE_ROOT; };
 		824786662CDFB095004CF4F8 /* Base.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = Base.podspec; path = ../Base.podspec; sourceTree = SOURCE_ROOT; };
+		824786672CDFBA89004CF4F8 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Package.swift; path = ../Package.swift; sourceTree = SOURCE_ROOT; };
 		826122112CDCAE0A003B2BAE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		82AB4B272CDE02AC00F7B523 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		86CED72B05A85ED4F78161BC /* Pods-XRouter_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XRouter_Tests.release.xcconfig"; path = "Target Support Files/Pods-XRouter_Tests/Pods-XRouter_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -67,7 +68,7 @@
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
-				607FACF51AFB993E008FA782 /* Podspec Metadata */,
+				607FACF51AFB993E008FA782 /* Metadata */,
 				607FACD21AFB9204008FA782 /* Example for XRouter */,
 				607FACD11AFB9204008FA782 /* Products */,
 				51531DD45F6176297CF7CEEA /* Pods */,
@@ -107,7 +108,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		607FACF51AFB993E008FA782 /* Podspec Metadata */ = {
+		607FACF51AFB993E008FA782 /* Metadata */ = {
 			isa = PBXGroup;
 			children = (
 				824786662CDFB095004CF4F8 /* Base.podspec */,
@@ -116,8 +117,9 @@
 				526CAC52FD852108EF1B8428 /* X-Router.podspec */,
 				DA7F76F39FEF06A8C9703E24 /* README.md */,
 				DB9D9CE6BF885912536017E1 /* LICENSE */,
+				824786672CDFBA89004CF4F8 /* Package.swift */,
 			);
-			name = "Podspec Metadata";
+			name = Metadata;
 			sourceTree = "<group>";
 		};
 		90E8FA04E8EDBE1493C52C52 /* Frameworks */ = {
@@ -389,7 +391,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "demo.--PRODUCT-NAME-rfc1034identifier-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.1;
 			};
 			name = Debug;
 		};
@@ -408,7 +410,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "demo.--PRODUCT-NAME-rfc1034identifier-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.1;
 			};
 			name = Release;
 		};
