@@ -1,8 +1,8 @@
 # XRouter
 
-[![Version](https://img.shields.io/cocoapods/v/XRouter.svg?style=flat)](https://cocoapods.org/pods/XRouter)
-[![License](https://img.shields.io/cocoapods/l/XRouter.svg?style=flat)](https://cocoapods.org/pods/XRouter)
-[![Platform](https://img.shields.io/cocoapods/p/XRouter.svg?style=flat)](https://cocoapods.org/pods/XRouter)
+[![Version](https://img.shields.io/cocoapods/v/X-Router.svg?style=flat)](https://cocoapods.org/pods/X-Router)
+[![License](https://img.shields.io/cocoapods/l/X-Router.svg?style=flat)](https://cocoapods.org/pods/X-Router)
+[![Platform](https://img.shields.io/cocoapods/p/X-Router.svg?style=flat)](https://cocoapods.org/pods/X-Router)
 
 ## Example
 
@@ -16,7 +16,7 @@ XRouter is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'XRouter'
+pod 'X-Router'
 ```
 
 ## Author
