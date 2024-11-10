@@ -15,12 +15,14 @@
 		826122122CDCAE0A003B2BAE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826122112CDCAE0A003B2BAE /* HomeViewController.swift */; };
 		82AB4B282CDE02AC00F7B523 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AB4B272CDE02AC00F7B523 /* NetworkService.swift */; };
 		90DF9D7E39966652D3D22B8B /* Pods_XRouter_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4504D865B113AB99048D8FCF /* Pods_XRouter_Example.framework */; };
+		ED1907D180A9EF88378A30A4 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 5005E6A28688AE7321A5421D /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1F45933FC252F2529B098F01 /* Pods-XRouter_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XRouter_Example.release.xcconfig"; path = "Target Support Files/Pods-XRouter_Example/Pods-XRouter_Example.release.xcconfig"; sourceTree = "<group>"; };
 		278DB6A16EF8DE30CBC09A37 /* Pods-XRouter_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XRouter_Example.debug.xcconfig"; path = "Target Support Files/Pods-XRouter_Example/Pods-XRouter_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		4504D865B113AB99048D8FCF /* Pods_XRouter_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XRouter_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5005E6A28688AE7321A5421D /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		526CAC52FD852108EF1B8428 /* X-Router.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = "X-Router.podspec"; path = "../X-Router.podspec"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		607FACD01AFB9204008FA782 /* XRouter_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XRouter_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -65,6 +67,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		603D521241BB923A21B4963E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5005E6A28688AE7321A5421D /* PrivacyInfo.xcprivacy */,
+			);
+			name = Resources;
+			path = XRouter/Resources;
+			sourceTree = "<group>";
+		};
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
@@ -73,6 +84,7 @@
 				607FACD11AFB9204008FA782 /* Products */,
 				51531DD45F6176297CF7CEEA /* Pods */,
 				90E8FA04E8EDBE1493C52C52 /* Frameworks */,
+				603D521241BB923A21B4963E /* Resources */,
 			);
 			sourceTree = "<group>";
 		};
@@ -196,6 +208,7 @@
 			files = (
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+				ED1907D180A9EF88378A30A4 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
