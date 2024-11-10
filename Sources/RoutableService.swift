@@ -3,12 +3,11 @@
 //  XRouter
 //
 //  Created by jowsing on 2024/10/17.
-//  Copyright © 2024 CocoaPods. All rights reserved.
 //
 
 import Foundation
 
-public protocol RoutableService: NSObject, Routable {
+public protocol RoutableService: NSObject, Registrable {
     
     static var name: String { get }
 }

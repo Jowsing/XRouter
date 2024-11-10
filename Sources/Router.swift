@@ -3,11 +3,9 @@
 //  XRouter
 //
 //  Created by jowsing on 2024/10/16.
-//  Copyright © 2024 CocoaPods. All rights reserved.
 //
 
-import Foundation
-import Dispatch
+import UIKit
 
 let xModulesFileName = "XRouter_modules_file"
 let xModulesVersion = "XRouter_modules_version"

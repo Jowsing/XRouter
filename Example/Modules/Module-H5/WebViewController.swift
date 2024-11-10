@@ -3,7 +3,6 @@
 //  XRouter_Example
 //
 //  Created by jowsing on 2024/11/8.
-//  Copyright © 2024 CocoaPods. All rights reserved.
 //
 
 import UIKit

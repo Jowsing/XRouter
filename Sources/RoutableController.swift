@@ -3,12 +3,11 @@
 //  XRouter
 //
 //  Created by jowsing on 2024/10/17.
-//  Copyright © 2024 CocoaPods. All rights reserved.
 //
 
 import UIKit
 
-public protocol RoutableController: Routable, UIViewController {
+public protocol RoutableController: Registrable, UIViewController {
     
     static var paths: [String] { get }
     
