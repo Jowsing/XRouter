@@ -2,14 +2,14 @@
 import PackageDescription
 
 let package = Package(
-    name: "X-Router",
+    name: "XRouter",
     platforms: [.iOS(.v10)],
     products: [
-        .library(name: "X-Router", targets: ["X-Router"])
+        .library(name: "XRouter", targets: ["XRouter"])
     ],
     targets: [
         .target(
-            name: "X-Router",
+            name: "XRouter",
             path: "Sources"
         )
     ]
