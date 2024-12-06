@@ -390,6 +390,7 @@
 			baseConfigurationReference = 278DB6A16EF8DE30CBC09A37 /* Pods-XRouter_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 38HBNZ3Q35;
 				ENABLE_DEBUG_DYLIB = NO;
 				INFOPLIST_FILE = XRouter/Info.plist;
@@ -409,6 +410,7 @@
 			baseConfigurationReference = 1F45933FC252F2529B098F01 /* Pods-XRouter_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 38HBNZ3Q35;
 				ENABLE_DEBUG_DYLIB = NO;
 				INFOPLIST_FILE = XRouter/Info.plist;

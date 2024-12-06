@@ -26,6 +26,21 @@ extension Router {
         }
     }
     
+    public static func canOpen(url: String, parameters: [String: Any]? = nil) -> Bool {
+        guard let routingURL = self.getRoutingURL(url, parameters: parameters) else {
+            return false
+        }
+        switch routingURL.scheme {
+        case .web:
+            // 网页直接放行
+            return true
+        case .native:
+            return self.getRoutingControllerType(routingURL) != nil
+        case .thirdApp:
+            return UIApplication.shared.canOpenURL(routingURL.url)
+        }
+    }
+    
     public static func routingViewController(url: String, parameters: [String: Any]? = nil) -> UIViewController? {
         guard let routingURL = self.getRoutingURL(url, parameters: parameters),
                 let controllerType = self.getRoutingControllerType(routingURL)
@@ -51,11 +66,11 @@ extension Router {
             return nil
         }
         if Router.shared.intercept(routingURL.path, parameters: routingURL.parameters) {
-            self.log("路由被拦截，url = \(routingURL.url.absoluteString)")
+            self.log("路由被拦截，url = \(routingURL.debugDescription)")
             return nil
         }
         guard let controllerType = Router.shared.controllerTypes[routingURL.path] else {
-            self.log("无法找到\(routingURL.url.absoluteString)对应的controllerType，请实现RoutableController协议")
+            self.log("无法找到\(routingURL.debugDescription)对应的controllerType，请实现RoutableController协议")
             return nil
         }
         return controllerType
@@ -103,7 +118,7 @@ extension Router {
     private static func jumpToWebView(routingURL: Router.URL) {
         var parameters = routingURL.parameters.values
         parameters["url"] = routingURL.url
-        guard let webRoutingURL = self.getRoutingURL("/webView", parameters: parameters) else { return }
+        guard let webRoutingURL = self.getRoutingURL(Config.webviewPath, parameters: parameters) else { return }
         guard let controllerType = self.getRoutingControllerType(webRoutingURL) else { return }
         self.jumpToNative(type: controllerType, action: routingURL.action, parameters: webRoutingURL.parameters)
     }

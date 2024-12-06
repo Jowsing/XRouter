@@ -111,3 +111,19 @@ extension Router {
         case safariView
     }
 }
+
+extension Router.URL: CustomDebugStringConvertible {
+    
+    var debugDescription: String {
+        var str = "<url = "
+        if let scheme = url.scheme, !scheme.isEmpty {
+            str += scheme + "://"
+        }
+        if !self.host.isEmpty {
+            str += self.host
+        }
+        str += self.path
+        str += ", parameters = \(self.parameters.values)>"
+        return str
+    }
+}
