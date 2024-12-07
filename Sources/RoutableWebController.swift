@@ -12,6 +12,6 @@ public protocol RoutableWebController: RoutableController {}
 extension RoutableWebController {
     
     public static var paths: [String] {
-        [Config.webviewPath]
+        [Router.Config.webviewPath]
     }
 }
