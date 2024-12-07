@@ -21,6 +21,8 @@ public final class Router {
     
     var interceptors = [Interceptor]()
     
+    var redirections = [String: Redirection]()
+    
     public func launch(with options: [UIApplication.LaunchOptionsKey: Any]?) {
         self.loadConfig { config in
             self.register(config.registrables)

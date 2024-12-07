@@ -20,7 +20,9 @@ extension Router {
         case .web:
             self.openWebPage(routingURL)
         case .native:
-            self.openNativePage(routingURL)
+            if !self.redirect(url: routingURL) {
+                self.openNativePage(routingURL)
+            }
         case .thirdApp:
             UIApplication.shared.open(routingURL.url)
         }
@@ -76,7 +78,7 @@ extension Router {
         return controllerType
     }
     
-    private static func openNativePage(_ routingURL: Router.URL) {
+    internal static func openNativePage(_ routingURL: Router.URL) {
         guard let controllerType = self.getRoutingControllerType(routingURL) else { return }
         self.jumpToNative(type: controllerType, action: routingURL.action, parameters: routingURL.parameters)
     }

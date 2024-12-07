@@ -77,5 +77,17 @@ extension HomeViewController: Launchable {
     
     static func didFinishLaunching(withOptions: [UIApplication.LaunchOptionsKey : Any]?) {
         Router.open(url: "/home")
+        // 直接重定向
+        Router.setRedirect(from: "/Redirect1", to: "/mine")
+        // 重定向带触发器
+        Router.setRedirect(from: "/Redirect2", to: "/demo") { resultHandler in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                if Bool.random() {
+                    resultHandler(.success(["color": UIColor.cyan]))
+                } else {
+                    resultHandler(.failure(NSError(domain: "0", code: 444)))
+                }
+            }
+        }
     }
 }
