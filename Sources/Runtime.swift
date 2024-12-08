@@ -54,3 +54,14 @@ public struct Runtime {
         return result
     }
 }
+
+extension Runtime {
+    
+    public static func onMainThread(_ handler: @escaping () -> Void) {
+        if Thread.isMainThread {
+            handler()
+        } else {
+            DispatchQueue.main.async(execute: handler)
+        }
+    }
+}

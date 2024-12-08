@@ -15,13 +15,15 @@ public final class Router {
     
     private(set) var appSchemes: [String] = []
         
-    var controllerTypes = [String: RoutableController.Type]()
+    let controllerTypes = SafeDictionary<String, RoutableController.Type>()
     
-    var serviceTypes = [String: any RoutableService.Type]()
+    let serviceTypes = SafeDictionary<String, any RoutableService.Type>()
+    
+    let sharedServices = SafeDictionary<String, RoutableService>()
+    
+    let redirections = SafeDictionary<String, Redirection>()
     
     var interceptors = [Interceptor]()
-    
-    var redirections = [String: Redirection]()
     
     public func launch(with options: [UIApplication.LaunchOptionsKey: Any]?) {
         self.loadConfig { config in

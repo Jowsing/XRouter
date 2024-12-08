@@ -49,7 +49,9 @@ extension Router {
     ///   - priority: 优先级
     ///   - handler: 拦截回调
     public static func addInterceptor(_ whiteList: [String] = [], priority: UInt = 0, handler: @escaping (Parameters) -> Bool) {
-        Router.shared.add(interceptor: Interceptor(whiteList, priority: priority, handler: handler))
+        Runtime.onMainThread {
+            Router.shared.add(interceptor: Interceptor(whiteList, priority: priority, handler: handler))
+        }
     }
     
     /// 是否拦截
